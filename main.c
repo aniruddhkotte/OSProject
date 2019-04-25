@@ -5,6 +5,11 @@
 int process[4][2] = {{0, 20}, {5, 36}, {13, 19}, {17, 42}};	//Arrival and Burst times respectively
 float priority[4] = {0.0};	// Array to calculate and store priorities of the processes initialized to '0'
 int bursts[4] = {20, 36, 19, 42};	// Copy of burst times used to print at the end
+int waiting[4] = {0};	// Waiting times of the processes initialized to '0'
+int turnAround[4] = {0};	// Same as above
+int completion[4] = {0};	// Same as above
+const arrival =0, burst =1;	// Used to refer to the corresponding values in the 'process' array
+int currenTime = 0;
 
 int updatePriority();	// Declaration of the function used to calculate the priorities
 void main() {
@@ -21,6 +26,17 @@ void main() {
 		process[next][burst] = 0;
 		priority[next] = 0;
 	}
+	
+	int turnAroundSum = 0;
+	int waitingSum = 0;
+	for(i=0; i<4; i++) {
+		turnAround[i] = completion[i] - process[i][arrival];
+		turnAroundSum += turnAround[i];
+		waitingSum += waiting[i];
+	}
+	
+	float waitingAvg = waitingSum/4.0;
+	float turnAroundAvg = turnAroundSum/4.0;
 }
 
 /*Calculates the priorities of each process based on
