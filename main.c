@@ -11,6 +11,8 @@ int completion[4] = {0};	// Same as above
 const arrival =0, burst =1;	// Used to refer to the corresponding values in the 'process' array
 int currenTime = 0;
 
+COORD coord = {0, 0};	// Variable used to postition the cursor on the consol
+
 int updatePriority();	// Declaration of the function used to calculate the priorities
 void main() {
 	int p, q, i, y, z;
@@ -57,4 +59,27 @@ int updatePriority() {
 		}
 	}
 	return high;
+	
+	printf("---------------------------------------------------------------------------------------------");
+	z = 1;
+	cursorPos(8, z);
+	printf("Process");
+	cursorPos(22, z);
+	printf("Arrival Time");
+	cursorPos(40, z);
+	printf("Burst Time");
+	cursorPos(55, z);
+	printf("Turnaround Time");
+	cursorPos(75, z);
+	printf("Waiting Time");
+	z += 1;
+	cursorPos(0, z);
+	printf("---------------------------------------------------------------------------------------------");
+}
+
+//Function to position the cursor on the consol
+void cursorPos (int x, int y) {
+	coord.X = x;
+	coord.Y = y;
+	SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
 }
