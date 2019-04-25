@@ -75,6 +75,55 @@ int updatePriority() {
 	z += 1;
 	cursorPos(0, z);
 	printf("---------------------------------------------------------------------------------------------");
+	
+	z+=1;
+	y=z;
+	cursorPos(11, y);
+	printf("P1");
+	cursorPos(11, y+1);
+	printf("P2");
+	cursorPos(11, y+2);
+	printf("P3");
+	cursorPos(11, y+3);
+	printf("P4");
+	
+	y=z;
+	for(i=0; i<4; i++) {
+		cursorPos(27, y+i);
+		printf("%2d", process[i][arrival]);
+		cursorPos(44, y+i);
+		printf("%d", bursts[i]);
+		cursorPos(60, y+i);
+		printf("%3d", turnAround[i]);
+		cursorPos(79, y+i);
+		printf("%3d", waiting[i]);
+	}
+	z=y+i;
+	cursorPos(55, z);
+	printf("--------------------------------------");
+	
+	z+=1;
+	cursorPos(40, z);
+	printf("Average :");
+	cursorPos(61, z);
+	printf("%.2f", turnAroundAvg);
+	cursorPos(80, z);
+	printf("%.2f", waitingAvg);
+	
+	z += 1;
+	cursorPos(55, z);
+	printf("--------------------------------------");
+	
+	z += 2;
+	cursorPos(10, z);
+	printf("Sequence of execution: ");
+	for(i=0; i<4; i++) {
+		if(i!=3) {
+			printf("P%d -> ", sequence[i]+1);
+		} else {
+		printf("P%d", sequence[i]+1);	
+		}
+	}
 }
 
 //Function to position the cursor on the consol
